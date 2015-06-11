@@ -41,13 +41,12 @@ var cupcakeShop = {
       overwrite its existing inventory.
 
   */
-  addFlavor: function(keyname) {
-
-       if (keyname in cupcakeShop.inventory) {
-        return 
+  addFlavor: function(type) {
+    if (!(type in cupcakeShop.inventory) {
+      cupcakeShop.inventory[type] = 0
     }
     
-   cupcakeShop.inventory[keyname] = 0
+    
 
   },
 
@@ -57,15 +56,16 @@ var cupcakeShop = {
       If there are cupcakes of that flavor, throw them away. (Eww, red velvet.)
   */
   removeFlavor: function(type) {
-   if (type in cupcakeShop.inventory)
-        delete cupcakeShop.inventory[type]
-  }, 
-}
+    if (type in cupcakeShop.inventory) {
+       delete cupcakeShop.inventory.type 
+    }
+  },
+
   /*
     shop.listFlavors: Returns a list of the flavors for sale.
   */
   listFlavors: function() {
-    return object.keys(cupcakeShop)
+    ._keys(cupcakeShop.inventory)
   },
 
   /*
@@ -76,9 +76,7 @@ var cupcakeShop = {
   */
   showStock: function(flavor) {
    if (flavor in cupcakeShop.inventory) {
-     return cupcakeShop.inventory[flavor]
-     console.log(cupcakeShop)
-     else { return false}
+    return
    }
   },
 
@@ -93,9 +91,16 @@ var cupcakeShop = {
       If that flavor DOESN'T exist in the inventory, do nothing.
   */
   restock: function(flavor, count) {
-
+if (flavor in cupcakeShop.inventory){
+  cupcakeShop.inventory[flavor] +=count
+}
   },
 
+bulkRestock: function(count) {
+_.each{cupcakeShop.inventory, function(value,keys){
+  cupcakeShop.restock[key,count]
+ }
+}
   /*
     shop.makeSale: Accepts a string as parameter, representing a cupcake flavor.
 
@@ -108,8 +113,21 @@ var cupcakeShop = {
         then return false.
   */
   makeSale: function(flavor) {
+if(flavor in cupcakeShop.inventory)[flavor] ===0){
+  return false
+}
+if (flavor in cupcakeShop.inventory){
+  cakeShop.inventory[flavor]-= 1
+  cupcakeShop.register+=cupcakeShop.price
+  return true
+ }
+return false
+},
 
-  },
+discountSale: function [flavor, discount]{
+  cupcakeShop.price =cupcakeShop.price * discount
+  
+}
 
   /*
     shop.reconcile: Adds the number in the register to the bank.
@@ -118,7 +136,8 @@ var cupcakeShop = {
       (Think of this like depositing the day's take in the bank at night.)
   */
   reconcile: function() {
-
+    cupcakeShop.bank += cupcakeShop.register
+     cupcakeShop.register = 0
   },
 
   /*
@@ -126,7 +145,7 @@ var cupcakeShop = {
       (Note: This shop does not ever sell cookies. It is a cupcake shop.)
   */
   sellsCookies: function() {
-    
+    return false
   }
 
 }
